@@ -28,4 +28,14 @@ class Palete extends \Phalcon\Mvc\Model
      */
     public $Order;
      
+    /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+		$this->hasMany("idPalete", "Artupal", "Palete");
+		$this->belongsTo("Order", "Order", "idOrder");
+
+    }
+
 }

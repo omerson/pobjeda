@@ -20,6 +20,12 @@ class Paketi extends \Phalcon\Mvc\Model
      *
      * @var string
      */
+    public $Item_Type;
+     
+    /**
+     *
+     * @var string
+     */
     public $Unique_Number;
      
     /**
@@ -50,19 +56,19 @@ class Paketi extends \Phalcon\Mvc\Model
      *
      * @var string
      */
-    public $Unit_of_Measure;
+    public $Unit_Of_Measure;
      
     /**
      *
      * @var double
      */
-    public $Count_of_Units;
+    public $Count_Of_Units;
      
     /**
      *
      * @var integer
      */
-    public $Number_of_Items;
+    public $Number_Of_Items;
      
     /**
      *
@@ -88,4 +94,14 @@ class Paketi extends \Phalcon\Mvc\Model
      */
     public $Artupal;
      
+    /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+		$this->hasMany("idPaketi", "Mikro", "Paketi");
+		$this->belongsTo("Artupal", "Artupal", "idArtupal");
+
+    }
+
 }

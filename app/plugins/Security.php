@@ -6,7 +6,8 @@ use Phalcon\Events\Event,
 	Phalcon\Acl,
 	Phalcon\Acl\Adapter as Adapter,
 	Phalcon\Acl\Resource as Resource,
-	Phalcon\Acl\Role as Role;
+	Phalcon\Acl\Role as Role,	
+	Phalcon\Acl\Adapter\Memory as Memory;
 
 /**
  * Security
@@ -25,7 +26,7 @@ class Security extends Plugin
 	{
 		if (!isset($this->persistent->acl)) {
 
-			$acl = new Adapter\Memory();
+			$acl = new Memory();
 
 			$acl->setDefaultAction(Acl::DENY);
 
@@ -40,23 +41,22 @@ class Security extends Plugin
 
 			//Private area resources
 			$privateResources = array(
-				//'visits' => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
-				//'users' =>array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
-				//'xml' => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete')
+				'visits' => array('index'),
+				'users' =>array('search', 'new', 'edit', 'save', 'create', 'delete'),
+				'xml' => array('index', 'upload')
 			);
 			foreach ($privateResources as $resource => $actions) {
-				$acl->addResource(new Resource($resource), $actions);
+				$acl->addResource(new Phalcon\Acl\Resource($resource), $actions);
 			}
 
 			//Public area resources
 			$publicResources = array(
-				//'search' => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
-				//'session' => array('index', 'register', 'start', 'end')
-				
+				'search' => array('index'),
+				'index' => array('index')			
 			);
 
 			foreach ($publicResources as $resource => $actions) {
-				$acl->addResource(new Resource($resource), $actions);
+				$acl->addResource(new Phalcon\Acl\Resource($resource), $actions);
 			}
 
 			//Grant access to public areas to both users and guests
@@ -101,10 +101,6 @@ class Security extends Plugin
 		$allowed = $acl->isAllowed($role, $controller, $action);
 		if ($allowed != Acl::ALLOW) {
 			$this->flash->error("You don't have access to this module");
-			$this->flash->error($role);
-			$this->flash->error($allowed);
-			$this->flash->error($controller);
-			$this->flash->error($allowed != Acl::ALLOW);
 
 			$dispatcher->forward(
 				array(
@@ -114,11 +110,6 @@ class Security extends Plugin
 			);
 			return false;
 		}
-
-		$this->flash->success("You have access to this module");
-		$this->flash->success($role);
-		$this->flash->success($allowed);
-		$this->flash->success($controller);
-		$this->flash->success($allowed != Acl::ALLOW);
+		$this->flash->success("You have access to this module");		
 	}
 }

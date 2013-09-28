@@ -22,4 +22,13 @@ class Users extends \Phalcon\Mvc\Model
      */
     public $password;
      
+    /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+		$this->hasMany("idUsers", "Order", "User");
+
+    }
+
 }

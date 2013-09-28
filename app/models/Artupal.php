@@ -38,13 +38,19 @@ class Artupal extends \Phalcon\Mvc\Model
      *
      * @var string
      */
-    public $Unit_of_Measure;
+    public $Unit_Of_Measure;
      
     /**
      *
      * @var integer
      */
-    public $Count_of_Units;
+    public $Count_Of_Units;
+     
+    /**
+     *
+     * @var string
+     */
+    public $Item_Type;
      
     /**
      *
@@ -52,4 +58,14 @@ class Artupal extends \Phalcon\Mvc\Model
      */
     public $Palete;
      
+    /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+		$this->hasMany("idArtupal", "Paketi", "Artupal");
+		$this->belongsTo("Palete", "Palete", "idPalete");
+
+    }
+
 }

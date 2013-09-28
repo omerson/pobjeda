@@ -18,13 +18,10 @@ class XmlController extends ControllerBase
             foreach ($this->request->getUploadedFiles() as $file){
                 $fileName = 'files/' . $file->getName();
                 $file->moveTo($fileName);
-                $xml = simplexml_load_file ($fileName); 
+                $xml_str = file_get_contents($fileName); 
                 $userId = $this->session->get('auth');
                 $user = Users::findFirst("idUsers = $userId");
-                $order = new Order();
-                $order->User = $userId;
-                $order->create();
-                $this->xmlToDb($xml, $user);               
+                $this->recursiveXmlToDb($xml_str, $user); //Main place to parse xml values to db                         
             }
         }else{
             $this->flash->success("You've failed to upload XML");
@@ -32,6 +29,69 @@ class XmlController extends ControllerBase
         $this->flash->success("You've successfully uploaded XML");
         return $this->forward('users/');
     }
+
+
+    protected function recursiveXmlToDb($xml, $model){
+        $xmlIterator = new SimpleXMLIterator( $xml );
+        for( $xmlIterator->rewind(); $xmlIterator->valid(); $xmlIterator->next() ) {
+            $model_name = $xmlIterator->current()->getName();
+            if($xmlIterator->hasChildren()) {                
+                //$model_name = str_replace('_', '', $model_name);
+                //$current_model = new $model_name(); 
+                //echo "==========================>>>>   ";                
+                //echo $model_name;
+               // echo "<br />";
+                //$this->recursiveXmlToDb($xmlIterator->current()->asXML(), $current_model);       
+
+                // print all children
+                foreach ($xmlIterator->getChildren() as $key => $value) {
+                    echo "=========================>";
+                    echo $key . ' : ' . $value . "\n";
+                    echo "<br />";
+
+                    $this->recursiveXmlToDb($value->asXML(), $key);
+                }
+
+
+
+
+            }else{
+               // $model->$model_name = $xmlIterator->current()[0];
+               // echo json_encode($xmlIterator->current()[0]);  
+               // echo "<br />";
+
+              //  echo json_encode($model);
+              // echo "<br />";
+                //var_dump($xmlIterator->key());
+                //echo "<br />";
+            }
+        }
+    }
+
+
+        protected function recursiveXmlToDb($xml, $model){
+        $xmlIterator = new SimpleXMLIterator( $xml );
+        for($xmlIterator->rewind(); $xmlIterator->valid(); $xmlIterator->next()) {
+            $model_name = $xmlIterator->current()->getName();
+            if($xmlIterator->hasChildren()) { 
+                echo "======================";
+                $model_name = str_replace('_', '', $model_name);
+                $current_model = new $model_name(); 
+                echo $model_name;
+                echo "<br />";   
+                foreach ($xmlIterator->getChildren() as $key => $value) {
+                   $this->recursiveXmlToDb($value->asXML(), $key);
+                   echo "~~~~~~~~~~~~~~~~~~~~~~~~";
+                   echo $key;
+                   echo $value;
+                   echo "<br />";
+                }
+
+                //$this->recursiveXmlToDb($xmlIterator->current()->asXML(), $current_model);
+            }
+        }
+    }
+
 
 
     protected function xmlToDb($xml, $user){ 

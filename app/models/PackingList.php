@@ -54,8 +54,23 @@ class PackingList extends \Phalcon\Mvc\Model
      
     /**
      *
+     * @var string
+     */
+    public $Item_Type;
+     
+    /**
+     *
      * @var integer
      */
     public $Order;
      
+    /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+		$this->belongsTo("Order", "Order", "idOrder");
+
+    }
+
 }

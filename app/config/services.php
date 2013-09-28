@@ -2,6 +2,7 @@
 
 	use Phalcon\DI\FactoryDefault,
 		Phalcon\Mvc\View,
+		Phalcon\Mvc\Dispatcher as Dispatcher,
 		Phalcon\Mvc\Url as UrlResolver,
 		Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter,
 		Phalcon\Mvc\View\Engine\Volt as VoltEngine,
@@ -30,7 +31,7 @@
 		 */
 		//$eventsManager->attach('dispatch', $security);
 
-		//$dispatcher = new Phalcon\Mvc\Dispatcher();
+		//$dispatcher = new Dispatcher();
 		//$dispatcher->setEventsManager($eventsManager);
 
 		//return $dispatcher;
@@ -95,9 +96,15 @@
 	/**
 	 * If the configuration specify the use of metadata adapter use it or use memory otherwise
 	 */
-	$di->set('modelsMetadata', function() {
+	$di->set('modelsMetadata', function() use ($config) {
+		if (isset($config->models->metadata)) {
+			$metaDataConfig = $config->models->metadata;
+			$metadataAdapter = 'Phalcon\Mvc\Model\Metadata\\'.$metaDataConfig->adapter;
+			return new $metadataAdapter();
+		}
 		return new MetaDataAdapter();
 	});
+
 
 	/**
 	 * Register the flash service with custom CSS classes
