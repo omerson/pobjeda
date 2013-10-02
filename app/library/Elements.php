@@ -17,7 +17,7 @@ class Elements extends Phalcon\Mvc\User\Component
                 'caption' => 'XML Upload',
                 'action' => ''
             ),
-            'search' => array(
+            'pretraga' => array(
                 'caption' => 'Search',
                 'action' => ''
             ),  

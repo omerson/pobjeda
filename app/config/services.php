@@ -58,7 +58,8 @@
 				));
 
 				return $volt;
-			}
+			},
+    		'.phtml' => 'Phalcon\Mvc\View\Engine\Php'
 		));
 
 		return $view;

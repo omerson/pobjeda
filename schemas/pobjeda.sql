@@ -35,7 +35,7 @@ CREATE TABLE `users` (
   KEY `fk_Users_Profiles` (`Profiles`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-INSERT INTO `users` VALUES (1,'admin','$2a$08$67BtUdkxtNzZORnu6FDeP.vvuzG3nKskrfIyd9tOrZJXmBsbtvArC', 'Name', 'Surname', 'admin@pobjeda.com', 'N', 1, 'N',  '061 439 929', 'N', 'Y');
+INSERT INTO `users` VALUES (1,'admin','admin', 'Name', 'Surname', 'admin@pobjeda.com', 'N', 1, 'N',  '061 439 929', 'N', 'Y');
 
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
