@@ -17,14 +17,14 @@
                     <div class="control-group">
                         <label class="control-label" for="name">Name</label>
                         <div class="controls">
-                            <?php echo $form->render('email'); ?>
+                            <?php echo $form->render('name'); ?>
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label class="control-label" for="surname">Surname</label>
                         <div class="controls">
-                            <?php echo $form->render('email'); ?>
+                            <?php echo $form->render('surname'); ?>
                         </div>
                     </div>
 
@@ -59,24 +59,6 @@
                         <label class="control-label" for="mobile">Cell Phone</label>
                         <div class="controls">
                             <?php echo $form->render('mobile'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="mobile">Banned?</label>
-                        <div class="controls">
-                            <?php echo $form->render('banned'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="mobile">Suspended?</label>
-                        <div class="controls">
-                            <?php echo $form->render('suspended'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="mobile">Active?</label>
-                        <div class="controls">
-                            <?php echo $form->render('active'); ?>
                         </div>
                     </div>
 

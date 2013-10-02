@@ -17,14 +17,14 @@
                     <div class="control-group">
                         <label class="control-label" for="name">Name</label>
                         <div class="controls">
-                            {{ form.render('email') }}
+                            {{ form.render('name') }}
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label class="control-label" for="surname">Surname</label>
                         <div class="controls">
-                            {{ form.render('email') }}
+                            {{ form.render('surname') }}
                         </div>
                     </div>
 
@@ -59,24 +59,6 @@
                         <label class="control-label" for="mobile">Cell Phone</label>
                         <div class="controls">
                             {{ form.render('mobile') }}
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="mobile">Banned?</label>
-                        <div class="controls">
-                            {{ form.render('banned') }}
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="mobile">Suspended?</label>
-                        <div class="controls">
-                            {{ form.render('suspended') }}
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="mobile">Active?</label>
-                        <div class="controls">
-                            {{ form.render('active') }}
                         </div>
                     </div>
 

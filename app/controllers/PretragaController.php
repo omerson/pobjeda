@@ -18,6 +18,7 @@ class PretragaController extends ControllerBase
     }
     
     public function getPackingListAction(){
+
         $this->view->disable();
         $sNumber = $_POST['sNumber'];
         $sCode = $_POST['sCode'];
@@ -93,8 +94,6 @@ class PretragaController extends ControllerBase
         else{
         echo json_encode($pListe);
         }
-    }
-   
-
+    }  
 }
 

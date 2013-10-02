@@ -69,14 +69,12 @@ class IndexController extends ControllerBase
 			$user->assign(array(
 				'name' => $this->request->getPost('name', 'striptags'),
 				'email' => $this->request->getPost('email'),
-				'password' => $this->security->hash($this->request->getPost('password')),
+				//'password' => $this->security->hash($this->request->getPost('password')),\
+				'password' => $this->request->getPost('password'),
 				'username' => $this->request->getPost('username'),
 				'surname' => $this->request->getPost('surname'),
 				'Profiles' => $this->request->getPost('Profiles', 'int'),
-				'mobile' => $this->request->getPost('mobile'),
-				'banned' => $this->request->getPost('banned'),
-				'suspended' => $this->request->getPost('suspended'),
-				'active' => $this->request->getPost('active')
+				'mobile' => $this->request->getPost('mobile')
 			));
 
 			if (!$user->save()) {

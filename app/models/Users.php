@@ -90,36 +90,25 @@ class Users extends Model
             //$tempPassword = preg_replace('/[^a-zA-Z0-9]/', '', base64_encode(openssl_random_pseudo_bytes(12)));
 
             //The user must change its password in first login
-            $this->mustChangePassword = 'Y';
+            //$this->mustChangePassword = 'Y';
 
             //Use this password as default
             //$this->password = $this->getDI()->getSecurity()->hash($tempPassword);
-            $this->password = 'admin';
+            //$this->password = 'admin';
 
         } else {
             //The user must not change its password in first login
             $this->mustChangePassword = 'N';
-
         }
 
         //The account must be confirmed via e-mail
-        $this->active = 'N';
+        $this->active = 'A';
 
         //The account is not suspended by default
         $this->suspended = 'N';
 
         //The account is not banned by default
         $this->banned = 'N';
-
-        $this->username = 'tempusername';
-
-        $this->name = 'Mujo';
-
-        $this->surname = 'Mujic';
-
-        $this->mobile = '061 000 000';
-
-
     }
      
     /**

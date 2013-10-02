@@ -147,10 +147,17 @@ class UsersController extends ControllerBase
 
 			$user = new Users();
 
-			$user->assign(array(
-				'username' => $this->request->getPost('username', 'striptags'),
+			$user->assign(array(				
 				'Profiles' => $this->request->getPost('Profiles', 'int'),
 				'email' => $this->request->getPost('email', 'email'),
+				'mobile' => $this->request->getPost('mobile'),
+
+				// Generated constant values
+				'name' => "tempname",
+				'surname' => "tempsurname",
+				'username' => "tempusername",
+				'password' => 'admin',
+				'mustChangePassword' => 'Y'				
 			));
 
 			if (!$user->save()) {
@@ -253,7 +260,7 @@ class UsersController extends ControllerBase
 				$user->save();
 
 				$passwordChange = new PasswordChanges();
-				$passwordChange->User = $user->idUsers;;
+				$passwordChange->User = $user->idUsers;
 				$passwordChange->ipAddress = $this->request->getClientAddress();
 				$passwordChange->userAgent = $this->request->getUserAgent();
 
