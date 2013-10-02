@@ -1,0 +1,129 @@
+<?php
+use Phalcon\Tag;
+?>
+<?php
+    echo Phalcon\Tag::javascriptInclude("http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", false);
+    echo Phalcon\Tag::javascriptInclude("javascript/jquery.js");
+    echo Phalcon\Tag::stylesheetLink("css/pretraga.css");
+    echo Phalcon\Tag::stylesheetLink("http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css", false);
+    echo Phalcon\Tag::javascriptInclude("http://code.jquery.com/ui/1.10.3/jquery-ui.js", false);
+    
+    
+?>
+
+
+<script type="text/javascript">
+   
+    $(document).ready(function(){
+      
+     
+        var imena=new Array();
+        $("#loader").fadeIn('600');
+        $("#loader").append("<p id='poruka1'>Ovdje idu rezultati vase pretrage...</p>");
+        
+        
+      
+
+     $('#search').click(function(){
+          
+            //$("#loader").addClass('loading');
+            $("#loader").empty();
+            $("#loader").append("<div id='lltest'> <div>");
+           //alert("Unio si: " + dodatak);
+           //$("#loader").fadeIn("200");
+            var sNumber = $('#snumber').val();
+            var sCode = $('#scode').val();
+            var rCode = $('#rcode').val();
+            
+            $.ajax({
+            url: '<?php echo  $this->url->get("pretraga/getPackingList");?>',
+            type: 'POST',
+            dataType: 'json',
+            data: {sNumber:sNumber, sCode:sCode, rCode:rCode},
+            success: function(data){
+                if (data==null) {
+                    $("#loader").empty();
+                    $("#loader").append("<div id='greska'> </div>");
+                    
+                }
+                else{
+                 setTimeout(function(){
+                //$("#loader").removeClass('loading');
+                $("#loader").empty();
+                $("#loader").append("<p id='naslov'>Rezultat pretrage: Packing List</p><hr />");
+                $("#loader").append("<table id='tab' border='1'/>");
+                $("#loader table").append("<tr><th class='zag'>Shipment_Number</th><th class='zag'>Sender_Name</th><th class='zag'>Sender_Code</th><th class='zag'>Receiver_Name</th><th class='zag'>Receiver_Code</th></tr>");
+                
+                for (i=0; i<data.length; i++) {
+                    //$("#loader").append("<p class='izlaz'>Ime: " + data[i].ime + "</p>" + "<p class='izlaz'>Prezime: " + data[i].prezime + "<br />");
+                    
+                    $("#loader table").append("<tr><td class='sadr'>" + data[i].Shipment_Number + "</td><td class='sadr'>" + data[i].Sender_Name + "</td><td class='sadr'>" + data[i].Sender_Code + "</td>"+
+                    "<td class='sadr'>" + data[i].Receiver_Name + "</td><td class='sadr'>" + data[i].Receiver_Code + "</td></tr>");   
+                
+                }
+                },600);
+                
+            }
+                
+            },
+            error: function(){
+                alert("greska...");
+            }
+          });
+          
+           
+           $('#snumber').val("");
+           $('#scode').val("");
+           $('#rcode').val("");
+          // $("#loader").empty();
+        
+       
+        }) ;
+     
+     $("#loader").on("mouseenter", ".sadr", function(){
+        $(this).css('color', 'rgb(189,15,15)');
+     });
+     
+      $("#loader").on("mouseleave", ".sadr", function(){
+        $(this).css('color', 'rgb(111,111,200)');
+     });
+    
+    });
+    
+   
+    
+</script>
+
+
+<div id="wrapper">
+ <div class="steps">
+    <fieldset class="step">
+        <legend>Search formular</legend>
+ <p>
+    <label for="name">Shipment Number</label>
+    <?php $opt = array('name', 'id'=>'snumber', 'size'=>'20');
+      $buttopt = array('Show', 'id'=>'dugme','class'=>'klasa');
+      $topt1 = array('surname', 'id'=>'scode', 'size'=>'20');
+      $topt2 = array('email', 'id'=>'rcode', 'size'=>'20');
+    ?>
+    <?php echo Tag::textField($opt) ?>
+ </p>
+ <p>
+    <label for="surname">Sender Code</label>
+    <?php echo Tag::textField($topt1) ?>
+   
+ </p>
+ <p>
+    <label for="email">Receiver Code</label>
+     <?php echo Tag::textField($topt2) ?>
+ </p>
+ 
+<input type="image" title="Pretraga..." id="search" src="/pobjeda/public/img/pretraga.jpg"
+    </fieldset>
+ </div>
+ 
+  </div>
+ 
+ <div id="loader">
+ </div>
+ 

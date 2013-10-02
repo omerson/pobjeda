@@ -57,5 +57,5 @@
 </table>
 {% endif %}
 {% else %}
-    No users are recorded
+    No users are recorded 
 {% endfor %}

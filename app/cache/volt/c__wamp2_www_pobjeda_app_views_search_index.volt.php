@@ -2,14 +2,11 @@
 
 <ul class="pager">
     <li class="previous pull-left">
-        <?php echo Phalcon\Tag::linkTo(array('users/index', '&larr; Go Back')); ?>
-    </li>
-    <li class="pull-right">
-        <?php echo Phalcon\Tag::linkTo(array('users/create', '<i class=\'icon-plus-sign\'></i> Create Users', 'class' => 'btn btn-primary')); ?>
+        <?php echo Phalcon\Tag::linkTo(array('search/index', '&larr; Go Back')); ?>
     </li>
 </ul>
 
-<?php $v27863023761iterated = false; ?><?php $v27863023761iterator = $page->items; $v27863023761incr = 0; $v27863023761loop = new stdClass(); $v27863023761loop->length = count($v27863023761iterator); $v27863023761loop->index = 1; $v27863023761loop->index0 = 1; $v27863023761loop->revindex = $v27863023761loop->length; $v27863023761loop->revindex0 = $v27863023761loop->length - 1; ?><?php foreach ($v27863023761iterator as $user) { ?><?php $v27863023761loop->first = ($v27863023761incr == 0); $v27863023761loop->index = $v27863023761incr + 1; $v27863023761loop->index0 = $v27863023761incr; $v27863023761loop->revindex = $v27863023761loop->length - $v27863023761incr; $v27863023761loop->revindex0 = $v27863023761loop->length - ($v27863023761incr + 1); $v27863023761loop->last = ($v27863023761incr == ($v27863023761loop->length - 1)); ?><?php $v27863023761iterated = true; ?>
+<?php $v27863023761iterated = false; ?><?php $v27863023761iterator = $page->items; $v27863023761incr = 0; $v27863023761loop = new stdClass(); $v27863023761loop->length = count($v27863023761iterator); $v27863023761loop->index = 1; $v27863023761loop->index0 = 1; $v27863023761loop->revindex = $v27863023761loop->length; $v27863023761loop->revindex0 = $v27863023761loop->length - 1; ?><?php foreach ($v27863023761iterator as $order) { ?><?php $v27863023761loop->first = ($v27863023761incr == 0); $v27863023761loop->index = $v27863023761incr + 1; $v27863023761loop->index0 = $v27863023761incr; $v27863023761loop->revindex = $v27863023761loop->length - $v27863023761incr; $v27863023761loop->revindex0 = $v27863023761loop->length - ($v27863023761incr + 1); $v27863023761loop->last = ($v27863023761incr == ($v27863023761loop->length - 1)); ?><?php $v27863023761iterated = true; ?>
 <?php if ($v27863023761loop->first) { ?>
 <table class="table table-bordered table-striped" align="center">
     <thead>
@@ -60,5 +57,5 @@
 </table>
 <?php } ?>
 <?php $v27863023761incr++; } if (!$v27863023761iterated) { ?>
-    No users are recorded
+    No users are recorded 
 <?php } ?>
