@@ -1,5 +1,6 @@
 <?php
 
+
 class SearchController extends ControllerBase
 {
 	public function initialize()
@@ -11,7 +12,7 @@ class SearchController extends ControllerBase
 
     public function indexAction()    
     {
-    	return $this->forward('index/');
+        
     }
 
 }

@@ -7,15 +7,10 @@
  */
 class Elements extends Phalcon\Mvc\User\Component
 {
-
     private $_headerMenu = array(
         'pull-left' => array(
             'users' => array(
                 'caption' => 'Users',
-                'action' => ''
-            ),
-            'visits' => array(
-                'caption' => 'Visits',
                 'action' => ''
             ),
             'xml' => array(
@@ -25,13 +20,21 @@ class Elements extends Phalcon\Mvc\User\Component
             'search' => array(
                 'caption' => 'Search',
                 'action' => ''
-            ),
+            ),  
+            'index' => array(
+                'caption' => 'Sign Up',
+                'action' => 'signup'
+            )
         ),
         'pull-right' => array(
-            'users' => array(
-                'caption' => 'Log In',
+            'index' => array(
+                'caption' => '',
                 'action' => ''
             ),
+            'users' => array(
+                'caption' => 'Log In',
+                'action' => 'login'
+            )
         )
     );
 
@@ -42,17 +45,25 @@ class Elements extends Phalcon\Mvc\User\Component
      */
     public function getMenu()
     {
-
+        $username = $this->session->get('auth')['name'];
+        $id = $this->session->get('auth')['idUsers'];
         $auth = $this->session->get('auth');
         if ($auth) {
             $this->_headerMenu['pull-right']['users'] = array(
                 'caption' => 'Log Out',
                 'action' => 'logout'
             );
+
+            $this->_headerMenu['pull-right']['index'] = array(
+                'caption' =>  $username,
+                'action' => 'edit/'.$id
+            );
+            
         } else {
             unset($this->_headerMenu['pull-left']['users']);
-            unset($this->_headerMenu['pull-left']['visits']);
             unset($this->_headerMenu['pull-left']['xml']);
+            unset($this->_headerMenu['pull-left']['index']);
+            unset($this->_headerMenu['pull-right']['index']);
         }
 
         echo '<div class="nav-collapse">';

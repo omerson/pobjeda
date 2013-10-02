@@ -7,9 +7,9 @@ $router->add('/login', array(
 	'action' => 'login',
 ));
 
-$router->add('/upload', array(
+$router->add('/index', array(
 	'controller' => 'xml',
-	'action' => 'upload',
+	'action' => 'index',
 ));
 
 return $router;

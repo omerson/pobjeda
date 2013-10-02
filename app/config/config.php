@@ -7,7 +7,7 @@ return new \Phalcon\Config(
 			'host'     => 'localhost',
 			'username' => 'root',
 			'password' => 'password',
-			'dbname'   => 'pobjeda',
+			'dbname'   => 'pobjeda'
 		),
 		'application' => array(
 			'controllersDir' => __DIR__ . '/../../app/controllers/',
@@ -15,12 +15,26 @@ return new \Phalcon\Config(
 			'viewsDir'       => __DIR__ . '/../../app/views/',
 			'pluginsDir'     => __DIR__ . '/../../app/plugins/',
 			'libraryDir'     => __DIR__ . '/../../app/library/',
+			'formsDir'		 => __DIR__ . '/../../app/forms/',			
+			'cacheDir'       => __DIR__ . '/../../app/cache/', 
 			'baseUri'        => '/pobjeda/',
+			'publicUrl'		 => '',
+			'cryptSalt'		 => '$9diko$.f#11'
 		),
-		'metadata' => array(
-			'adapter' => "Apc",
-			'suffix' => 'my-suffix',
-			'lifetime' => '86400'
+		'mail' => array(
+			'fromName' => 'Pobjeda',
+			'fromEmail' => 'phosphorum@phalconphp.com',
+			'smtp' => array(
+				'server' => 'smtp.gmail.com',
+				'port' => 587,
+				'security' => 'tls',
+				'username' => '',
+				'password' => '',
+			)
+		),
+		'amazon' => array(
+			'AWSAccessKeyId' => "",
+			'AWSSecretKey' => ""
 		)
 	)	
 );

@@ -2,14 +2,14 @@
 
 	use Phalcon\DI\FactoryDefault,
 		Phalcon\Mvc\View,
+		Phalcon\Crypt,
 		Phalcon\Mvc\Dispatcher as Dispatcher,
 		Phalcon\Mvc\Url as UrlResolver,
 		Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter,
 		Phalcon\Mvc\View\Engine\Volt as VoltEngine,
-		Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter,
+		Phalcon\Mvc\Model\Metadata\Files as MetaDataAdapter,
 		Phalcon\Flash\Direct as Flash,
-		Phalcon\Session\Adapter\Files as SessionAdapter,
-		Phalcon\Mvc\View\Engine\Volt as Volt;
+		Phalcon\Session\Adapter\Files as SessionAdapter;
 
 
 	/**
@@ -18,24 +18,9 @@
 	$di = new FactoryDefault();
 
 	/**
-	 * We register the events manager
+	 * Register the global configuration as config
 	 */
-	//$di->set('dispatcher', function() use ($di) {
-
-		//$eventsManager = $di->getShared('eventsManager');
-
-		//$security = new Security($di);
-
-		/**
-		 * We listen for events in the dispatcher using the Security plugin
-		 */
-		//$eventsManager->attach('dispatch', $security);
-
-		//$dispatcher = new Dispatcher();
-		//$dispatcher->setEventsManager($eventsManager);
-
-		//return $dispatcher;
-	//});
+	$di->set('config', $config);
 
 	/**
 	 * Include the application routes
@@ -57,28 +42,26 @@
 	 * Setting up the view component
 	 */
 	$di->set('view', function() use ($config) {
+
 		$view = new View();
+
 		$view->setViewsDir($config->application->viewsDir);
 
 		$view->registerEngines(array(
-			".volt" => 'volt'
+			'.volt' => function($view, $di) use ($config) {
+
+				$volt = new VoltEngine($view, $di);
+
+				$volt->setOptions(array(
+					'compiledPath' => $config->application->cacheDir . 'volt/',
+					'compiledSeparator' => '_'
+				));
+
+				return $volt;
+			}
 		));
 
 		return $view;
-	});
-
-	/**
-	 * Setting up volt
-	 */
-	$di->set('volt', function($view, $di) {
-
-		$volt = new Volt($view, $di);
-
-		$volt->setOptions(array(
-			"compiledPath" => "../cache/volt/"
-		));
-
-		return $volt;
 	}, true);
 
 	/**
@@ -93,18 +76,24 @@
 		));
 	});
 
+		/**
+	 * Crypt service
+	 */
+	$di->set('crypt', function() use ($config) {
+		$crypt = new Crypt();
+		$crypt->setKey($config->application->cryptSalt);
+		return $crypt;
+	});
+
+
 	/**
 	 * If the configuration specify the use of metadata adapter use it or use memory otherwise
 	 */
-	$di->set('modelsMetadata', function() use ($config) {
-		if (isset($config->models->metadata)) {
-			$metaDataConfig = $config->models->metadata;
-			$metadataAdapter = 'Phalcon\Mvc\Model\Metadata\\'.$metaDataConfig->adapter;
-			return new $metadataAdapter();
-		}
-		return new MetaDataAdapter();
-	});
-
+	//$di->set('modelsMetadata', function() use ($config) {
+		//return new MetaDataAdapter(array(
+		//	'metaDataDir' => $config->application->cacheDir . 'metaData/'
+		//));
+	//});
 
 	/**
 	 * Register the flash service with custom CSS classes
@@ -132,3 +121,25 @@
 		$session->start();
 		return $session;
 	});
+
+	/**
+	 * Custom authentication component
+	 */
+	$di->set('auth', function(){
+		return new Auth();
+	});
+
+	/**
+	 * Mail service uses AmazonSES
+	 */
+	$di->set('mail', function() {
+		return new Mail();
+	});
+
+	/**
+	 * Access Control List
+	 */
+	$di->set('acl', function() {
+		return new Acl();
+	});
+

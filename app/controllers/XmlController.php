@@ -1,5 +1,6 @@
 <?php
 
+
 class XmlController extends ControllerBase
 {
     public function initialize()
@@ -11,6 +12,11 @@ class XmlController extends ControllerBase
 
     public function indexAction()
     {
+        $auth = $this->session->get('auth');
+        if (!$auth){
+            $this->flash->notice("Please login 5454");
+            return $this->forward('users/');   
+        }
     }
 
     public function uploadAction(){
@@ -19,18 +25,18 @@ class XmlController extends ControllerBase
                 $fileName = 'files/' . $file->getName();
                 $file->moveTo($fileName);
                 $xml = simplexml_load_file ($fileName); 
-                $userId = $this->session->get('auth');
+                $userId = $this->session->get('auth')['idUsers'];
                 $user = Users::findFirst("idUsers = $userId");
                 $order = new Order();
                 $order->User = $userId;
                 $order->create();
                 $this->xmlToDb($xml, $user);               
             }
+            $this->flash->success("You've successfully uploaded XML");
         }else{
-            $this->flash->success("You've failed to upload XML");
+            $this->flash->error("You've failed to upload XML");
         } 
-        $this->flash->success("You've successfully uploaded XML");
-        return $this->forward('users/');
+        return $this->forward('xml/');
     }
 
 

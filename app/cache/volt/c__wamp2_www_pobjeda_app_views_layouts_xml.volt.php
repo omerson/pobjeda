@@ -1,7 +1,8 @@
+    <?php echo $this->getContent(); ?>
 <div class="hero-unit">
     <h1>Welcome to POBJEDA</h1>
     <p>Here you can upload your order's XML file.</p>   
-    {{ content() }}
+    <?php echo $this->getContent(); ?>
 </div>
 
 <div class="row">

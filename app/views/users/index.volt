@@ -1,31 +1,39 @@
 {{ content() }}
 
-<div class="login-or-signup">
-    <div class="row">
-
-        <div class="span6">
-            <div class="page-header">
-                <h2>Log In</h2>
-            </div>
-            {{ form('users/login', 'class': 'form-inline') }}
-                <fieldset>
-                    <div class="control-group">
-                        <label class="control-label" for="email">Username/Email</label>
-                        <div class="controls">
-                            {{ text_field('username', 'size': "30", 'class': "input-xlarge") }}
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="password">Password</label>
-                        <div class="controls">
-                            {{ password_field('password', 'size': "30", 'class': "input-xlarge") }}
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        {{ submit_button('Login', 'class': 'btn btn-primary btn-large') }}
-                    </div>
-                </fieldset>
-            </form>
-        </div>   
-    </div>
+<div align="right">
+    {{ link_to("users/create", "<i class='icon-plus-sign'></i> Create Users", "class": "btn btn-primary") }}
 </div>
+
+<form method="post" action="{{ url("users/search") }}" autocomplete="off">
+
+    <div class="left scaffold">
+
+        <h2>Search users</h2>
+
+        <div class="clearfix">
+            <label for="idUsers">Id</label>
+            {{ form.render("idUsers") }}
+        </div>
+
+        <div class="clearfix">
+            <label for="name">Username</label>
+            {{ form.render("username") }}
+        </div>
+
+        <div class="clearfix">
+            <label for="email">E-Mail</label>
+            {{ form.render("email") }}
+        </div>
+
+        <div class="clearfix">
+            <label for="Profiles">Profile</label>
+            {{ form.render("Profiles") }}
+        </div>
+
+        <div class="clearfix">
+            {{ submit_button("Search", "class": "btn btn-primary") }}
+        </div>
+
+    </div>
+
+</form>

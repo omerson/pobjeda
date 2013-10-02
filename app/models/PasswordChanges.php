@@ -1,41 +1,52 @@
 <?php
 
 
-class Order extends \Phalcon\Mvc\Model
+class PasswordChanges extends \Phalcon\Mvc\Model
 {
 
     /**
      *
      * @var integer
      */
-    public $idOrder;
+    public $idChanges;
      
     /**
      *
      * @var integer
      */
     public $User;
-
+     
+    /**
+     *
+     * @var string
+     */
+    public $ipAddress;
+     
+    /**
+     *
+     * @var string
+     */
+    public $userAgent;
+     
     /**
      *
      * @var integer
      */
     public $createdAt;
 
-
+    
     public function beforeValidationOnCreate()
     {
         //Timestamp the confirmaton
         $this->createdAt = time();
-    }     
+    }
+     
      
     /**
      * Initialize method for model.
      */
     public function initialize()
     {
-		$this->hasMany("idOrder", "PackingList", "Order");
-		$this->hasMany("idOrder", "Palete", "Order");
 		$this->belongsTo("User", "Users", "idUsers");
 
     }

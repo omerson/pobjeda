@@ -1,41 +1,50 @@
 <?php
 
 
-class Order extends \Phalcon\Mvc\Model
+class EmailConfirmations extends \Phalcon\Mvc\Model
 {
 
     /**
      *
      * @var integer
      */
-    public $idOrder;
+    public $idConfirmations;
      
     /**
      *
      * @var integer
      */
     public $User;
-
+     
+    /**
+     *
+     * @var string
+     */
+    public $code;
+     
     /**
      *
      * @var integer
      */
     public $createdAt;
-
-
-    public function beforeValidationOnCreate()
-    {
-        //Timestamp the confirmaton
-        $this->createdAt = time();
-    }     
+     
+    /**
+     *
+     * @var integer
+     */
+    public $modifiedAt;
+     
+    /**
+     *
+     * @var string
+     */
+    public $confirmed;
      
     /**
      * Initialize method for model.
      */
     public function initialize()
     {
-		$this->hasMany("idOrder", "PackingList", "Order");
-		$this->hasMany("idOrder", "Palete", "Order");
 		$this->belongsTo("User", "Users", "idUsers");
 
     }
