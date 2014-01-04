@@ -1,4 +1,3 @@
-
 <form method="post" autocomplete="off">
 
     <ul class="pager">
@@ -99,7 +98,7 @@
                                     <td>{{ search.idSearch }}</td>
                                     <td>{{ search.ipAddress }}</td>
                                     <td>{{ search.userAgent }}</td>
-                                    <td>{{ date("Y-m-d H:i:s", search.occurred) }}</td>                            
+                                    <td>{{ date("Y-m-d H:i:s", search.occurred) }}</td>
                                 </tr>
                             {% else %}
                                 <tr><td colspan="3" align="center">User does not have any searches</td></tr>
@@ -126,7 +125,7 @@
                                     <td>{{ slogins.idLogins }}</td>
                                     <td>{{ slogins.ipAddress }}</td>
                                     <td>{{ slogins.userAgent }}</td>
-                                    <td>{{ date("Y-m-d H:i:s", slogins.occurred) }}</td>                            
+                                    <td>{{ date("Y-m-d H:i:s", slogins.occurred) }}</td>
                                 </tr>
                             {% else %}
                                 <tr><td colspan="3" align="center">User does not have successfull logins</td></tr>

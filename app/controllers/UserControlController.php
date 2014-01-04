@@ -30,7 +30,7 @@ class UserControlController extends ControllerBase
 	 * Confirms an e-mail, if the user must change its password then changes it
 	 */
 	public function confirmEmailAction()
-	{		
+	{
 		$code = $this->dispatcher->getParam('code');
 
 		$confirmation = EmailConfirmations::findFirstByCode($code);
@@ -145,6 +145,5 @@ class UserControlController extends ControllerBase
 		));
 
 	}
-
 }
 

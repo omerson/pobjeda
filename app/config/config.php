@@ -8,8 +8,8 @@ return new \Phalcon\Config(array(
 		'password'    => 'trackandtrace',
 		'dbname'      => 'seeecono_tt'*/
 
-		'username'    => '',
-		'password'    => '',
+		'username'    => 'root',
+		'password'    => 'Sabina8',
 		'dbname'      => 'pobjeda'  // za lokalnu upotrebu
 
 	),
@@ -22,6 +22,6 @@ return new \Phalcon\Config(array(
 		'pluginsDir'     => __DIR__ . '/../../app/plugins/',
 		'cacheDir'       => __DIR__ . '/../../app/cache/',
 		//'baseUri'        => '/seeecono/', // za serversku upotrebu
-		'baseUri'        => '/pobjeda/', // za lokalnu upotrebu
+		'baseUri'        => '/pobjeda/' // za lokalnu upotrebu
 	)
 ));

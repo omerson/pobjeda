@@ -27,7 +27,6 @@ CREATE TABLE `users` (
   `mustChangePassword` char(1) DEFAULT NULL,
   `Profiles` int(10) unsigned NOT NULL,
   `banned` char(1) NOT NULL,
-  `mobile` varchar(45) NOT NULL,
   `suspended` char(1) NOT NULL,
   `active` char(1) DEFAULT NULL,
   PRIMARY KEY (`idUsers`),

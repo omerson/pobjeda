@@ -14,67 +14,61 @@ class Users extends Model
      * @var integer
      */
     public $idUsers;
-     
+
     /**
      *
      * @var string
      */
     public $username;
-     
+
     /**
      *
      * @var string
      */
     public $password;
-     
+
     /**
      *
      * @var string
      */
     public $name;
-          
+
     /**
      *
      * @var string
      */
     public $email;
-     
+
     /**
      *
      * @var string
      */
     public $mustChangePassword;
-     
+
     /**
      *
      * @var integer
      */
     public $Profiles;
-     
+
     /**
      *
      * @var string
      */
     public $banned;
-     
-    /**
-     *
-     * @var string
-     */
-    public $mobile;
-     
+
     /**
      *
      * @var string
      */
     public $suspended;
-     
+
     /**
      *
      * @var string
      */
     public $active;
-     
+
     /**
      * Before create the user assign a password
      */
@@ -113,7 +107,7 @@ class Users extends Model
     public function afterSave()
     {
         if ($this->active == 'N') {
-            
+
             $emailConfirmation = new EmailConfirmations();
 
             $emailConfirmation->User = $this->idUsers;
@@ -125,7 +119,7 @@ class Users extends Model
             }
         }
     }
-     
+
     /**
      * Validations and business logic
      */

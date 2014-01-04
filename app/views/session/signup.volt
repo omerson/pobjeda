@@ -48,15 +48,6 @@
 	                    </div>
 	                </div>
 
-
-	                <div class="control-group">
-	                	 <label class="control-label" for="mobile">Mobile</label>
-	                    <div class="controls">
-	                        {{ form.render('mobile') }}
-							{{ form.messages('mobile') }}
-	                    </div>
-	                </div>
-
                     <div class="control-group">
 	                	 {{ form.render('terms') }} {{ form.label('terms') }}
 							{{ form.messages('terms') }}

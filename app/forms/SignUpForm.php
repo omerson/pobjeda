@@ -45,21 +45,6 @@ class SignUpForm extends Form
 
 		$this->add($username);
 
-
-		// Mobile
-		$mobile = new Text('mobile');
-
-		$mobile->setLabel('Mobile');
-
-		$name->addValidators(array(
-			new PresenceOf(array(
-				'message' => 'The mobile is required'
-			))
-		));
-
-		$this->add($mobile);
-
-
 		//Email
 		$email = new Text('email');
 
@@ -142,7 +127,6 @@ class SignUpForm extends Form
 		$this->add(new Submit('Sign Up', array(
 			'class' => 'btn btn-success'
 		)));
-
 	}
 
 	/**
@@ -156,5 +140,4 @@ class SignUpForm extends Form
 			}
 		}
 	}
-
 }

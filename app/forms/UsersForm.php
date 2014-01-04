@@ -35,8 +35,6 @@ class UsersForm extends Form
 
 		$this->add(new Text('username'));
 
-		$this->add(new Text('mobile'));
-
 		$this->add(new Select('Profiles', Profiles::find('active = "Y"'), array(
 			'using' => array('id', 'name'),
 			'useEmpty' => true,
@@ -58,7 +56,5 @@ class UsersForm extends Form
 			'Y' => 'Yes',
 			'N' => 'No'
 		)));
-
 	}
-
 }
