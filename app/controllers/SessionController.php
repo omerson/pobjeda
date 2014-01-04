@@ -8,7 +8,7 @@ use Pobjeda\Forms\LoginForm,
 	Pobjeda\Auth\Auth,
 	Pobjeda\Auth\Exception as AuthException,
 	Pobjeda\Models\Users,
-	Pobjeda\Models\SuccessLogouts,	
+	Pobjeda\Models\SuccessLogouts,
 	Pobjeda\Models\ResetPasswords,
 	Pobjeda\Models\EmailConfirmations,
 	Pobjeda\ViaNetSMS\ViaNettSMS;
@@ -41,8 +41,7 @@ class SessionController extends ControllerBase
 					'email' => $this->request->getPost('email'),
 					'password' => $this->security->hash($this->request->getPost('password')),
 					'Profiles' => 1,
-					'username' => $this->request->getPost('username'),
-					'mobile' => $this->request->getPost('mobile')
+					'username' => $this->request->getPost('username')
 				));
 
 				if ($user->save()) {
@@ -52,42 +51,13 @@ class SessionController extends ControllerBase
 			        $to = $this->request->getPost('email');
 		        	$code = $emailConfirmation->code;
 			        $headers = 'From: no-reply@seebn.com';
-			      
+
 			        $publicUrl = 'seebn.com/seeecono';
 			        $confirmUrl = '/confirm/' . $code . '/' . $to;
-			        
+
 			        $emailHtml = 'You have successfully created a Pobjeda account. To activate it, please click to verify your email address.http://'.$publicUrl.$confirmUrl;
 
 			        mail($to, 'Confirmation email', $emailHtml, $headers);
-
-					// Send SMS.
-					/*$Username = "eomeroff@gmail.com";
-					$Password = "2dyty";
-					$MsgSender = $this->request->getPost('mobile');
-					$DestinationAddress = $this->request->getPost('mobile');
-					$Message = "You have created account on seebn.com/seeecono, please check your email". $this->request->getPost('email');
-
-					$ViaNettSMS = new ViaNettSMS($Username, $Password);
-					try
-					{
-						$Result = $ViaNettSMS->SendSMS($MsgSender, $DestinationAddress, $Message);
-
-						if ($Result->Success){
-							$this->flash->notice('SMS successfully sent to ' . $this->request->getPost('mobile'));							
-						}
-						else{
-							$this->flash->error("Error occured while sending SMS<br />Errorcode: " . $Result->ErrorCode . "<br />Errormessage: " . $Result->ErrorMessage);							
-						}
-					}
-					catch (Exception $e)
-					{
-						$this->flash->error("Error occured while sending SMS<br />Errorcode: " . $Result->ErrorCode . "<br />Errormessage: " . $Result->ErrorMessage);
-
-						return $this->dispatcher->forward(array(
-							'controller' => 'index',
-							'action' => 'index'
-						));
-					}*/
 
 					return $this->dispatcher->forward(array(
 						'controller' => 'index',
@@ -169,10 +139,10 @@ class SessionController extends ControllerBase
 				        $to = $this->request->getPost('email');
 			        	$code = $resetPassword->code;
 				        $headers = 'From: no-reply@seebn.com';
-				      
+
 				        $publicUrl = 'seebn.com/seeecono';
 				        $confirmUrl = '/reset-password/' . $code . '/' . $to;
-				        
+
 				        $emailHtml = 'To reset your password please click.http://'.$publicUrl.$confirmUrl;
 
 				        mail($to, 'Reset password', $emailHtml, $headers);
@@ -196,7 +166,7 @@ class SessionController extends ControllerBase
 	 */
 	public function logoutAction()
 	{
-		$user = $this->auth->getUser();	
+		$user = $this->auth->getUser();
 
 		var_dump($user);
 
