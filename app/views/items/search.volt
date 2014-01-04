@@ -1,8 +1,3 @@
-{% for pl in parameters %}   
-         {{pl}}  
-{% endfor %}
-
-
 {% if itemClass == "Order" %}    
     {% for item in page.items %}
         {% if loop.first %}
@@ -153,7 +148,7 @@
                     <th>Quantity</th>
                     <th>Unit of measure</th>
                     <th>Count of units</th>
-                    <th>Item type</th>                    
+                    <th>Item type</th>
                 </tr>
             </thead>
         {% endif %}
@@ -206,12 +201,12 @@
                     <th>Description</th>
                     <th>Production date</th>
                     <th>Quantity</th>
-                    <th>Unit of measure</th>                    
+                    <th>Unit of measure</th>
                     <th>Count of units</th>
                     <th>Number of items</th>
                     <th>GS1 code</th>
-                    <th>Country code</th>                    
-                    <th>Site code</th>                    
+                    <th>Country code</th>
+                    <th>Site code</th>
                 </tr>
             </thead>
         {% endif %}
@@ -270,12 +265,12 @@
                     <th>Description</th>
                     <th>Production date</th>
                     <th>Quantity</th>
-                    <th>Unit of measure</th>                    
+                    <th>Unit of measure</th>
                     <th>Count of units</th>
                     <th>Number of items</th>
                     <th>GS1 code</th>
-                    <th>Country code</th>                    
-                    <th>Site code</th>                    
+                    <th>Country code</th>
+                    <th>Site code</th>
                 </tr>
             </thead>
         {% endif %}
@@ -334,12 +329,12 @@
                     <th>Description</th>
                     <th>Production date</th>
                     <th>Quantity</th>
-                    <th>Unit of measure</th>                    
+                    <th>Unit of measure</th>
                     <th>Count of units</th>
                     <th>Number of items</th>
                     <th>GS1 code</th>
-                    <th>Country code</th>                    
-                    <th>Site code</th>                    
+                    <th>Country code</th>
+                    <th>Site code</th>
                 </tr>
             </thead>
         {% endif %}
