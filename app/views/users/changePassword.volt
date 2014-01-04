@@ -1,10 +1,5 @@
 {{ content() }}
 
-<ul class="pager">
-    <li class="previous pull-left">
-        {{ link_to("users/" , "&larr; Go Back") }}
-    </li>
-</ul>
 <form method="post" autocomplete="off" action="{{ url("users/changePassword") }}">
 
     <div class="left scaffold">

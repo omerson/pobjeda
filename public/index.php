@@ -7,7 +7,7 @@ try {
 	/**
 	 * Read the configuration
 	 */
-	$config = include(__DIR__."/../app/config/config.php");
+	$config = include __DIR__ . "/../app/config/config.php";
 
 	/**
 	 * Read auto-loader
@@ -18,16 +18,15 @@ try {
 	 * Read services
 	 */
 	include __DIR__ . "/../app/config/services.php";
-	
+
 	/**
 	 * Handle the request
 	 */
-	$application = new \Phalcon\Mvc\Application();
-	$application->setDI($di);
+	$application = new \Phalcon\Mvc\Application($di);
+
 	echo $application->handle()->getContent();
 
-} catch (Phalcon\Exception $e) {
-	echo $e->getMessage();
-} catch (PDOException $e){
-	echo $e->getMessage();
+} catch (Exception $e) {
+	echo $e->getMessage(), '<br>';
+	echo nl2br(htmlentities($e->getTraceAsString()));
 }

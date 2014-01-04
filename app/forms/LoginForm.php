@@ -1,5 +1,6 @@
 <?php
 
+namespace Pobjeda\Forms;
 
 use Phalcon\Forms\Form,
 	Phalcon\Forms\Element\Text,
@@ -11,6 +12,7 @@ use Phalcon\Forms\Form,
 	Phalcon\Validation\Validator\Email,
 	Phalcon\Validation\Validator\Identical;
 
+use Pobjeda\Models\Profiles;
 
 class LoginForm extends Form
 {

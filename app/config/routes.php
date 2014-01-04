@@ -2,14 +2,14 @@
 
 $router = new Phalcon\Mvc\Router();
 
-$router->add('/login', array(
-	'controller' => 'users',
-	'action' => 'login',
+$router->add('/confirm/{code}/{email}', array(
+	'controller' => 'user_control',
+	'action' => 'confirmEmail'
 ));
 
-$router->add('/index', array(
-	'controller' => 'xml',
-	'action' => 'index',
+$router->add('/reset-password/{code}/{email}', array(
+	'controller' => 'user_control',
+	'action' => 'resetPassword'
 ));
 
 return $router;

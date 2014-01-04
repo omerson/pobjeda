@@ -1,7 +1,10 @@
 <?php
 
+namespace Pobjeda\Models;
 
-class SuccessSearch extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+
+class SuccessSearch extends Model
 {
 
     /**
@@ -46,12 +49,9 @@ class SuccessSearch extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-		$this->hasMany("idSearch", "SearchParams", "Search");
+		$this->hasMany("idSearch", "Pobjeda\Models\SearchParams", "Search");
 		$this->belongsTo("User", "Users", "idUsers", array(
             'alias' => 'user'
         ));
-
-
     }
-
 }

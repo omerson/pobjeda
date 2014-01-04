@@ -1,8 +1,17 @@
 <?php
 
+namespace Pobjeda\Models;
 
-class Jedinicno extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+
+class Jedinicno extends Model
 {
+
+    /**
+     *
+     * @var integer
+     */
+    public $Mikro;
 
     /**
      *
@@ -88,19 +97,14 @@ class Jedinicno extends \Phalcon\Mvc\Model
      */
     public $Number_Of_Items;
      
-    /**
-     *
-     * @var integer
-     */
-    public $Mikro;
+
      
     /**
      * Initialize method for model.
      */
     public function initialize()
     {
-		$this->belongsTo("Mikro", "Mikro", "idMikro");
-
+		$this->belongsTo("Mikro", "Pobjeda\Models\Mikro", "idMikro");
     }
 
 }

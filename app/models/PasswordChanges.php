@@ -1,7 +1,10 @@
 <?php
 
+namespace Pobjeda\Models;
 
-class PasswordChanges extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+
+class PasswordChanges extends Model
 {
 
     /**
@@ -47,7 +50,7 @@ class PasswordChanges extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-		$this->belongsTo("User", "Users", "idUsers");
+		$this->belongsTo("User", "Pobjeda\Models\Users", "idUsers");
 
     }
 

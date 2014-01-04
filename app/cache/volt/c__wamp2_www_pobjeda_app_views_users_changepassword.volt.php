@@ -1,10 +1,5 @@
 <?php echo $this->getContent(); ?>
 
-<ul class="pager">
-    <li class="previous pull-left">
-        <?php echo Phalcon\Tag::linkTo(array('users/', '&larr; Go Back')); ?>
-    </li>
-</ul>
 <form method="post" autocomplete="off" action="<?php echo $this->url->get('users/changePassword'); ?>">
 
     <div class="left scaffold">

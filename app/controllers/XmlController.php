@@ -1,22 +1,26 @@
 <?php
 
+namespace Pobjeda\Controllers;
+
+use Pobjeda\Models\Users,
+    Pobjeda\Models\Order,
+    Pobjeda\Models\PackingList,
+    Pobjeda\Models\Palete,
+    Pobjeda\Models\Artupal,
+    Pobjeda\Models\Paketi,
+    Pobjeda\Models\Mikro,
+    Pobjeda\Models\Jedinicno;
+
 
 class XmlController extends ControllerBase
 {
     public function initialize()
     {
-        $this->view->setTemplateAfter('main');
-        Phalcon\Tag::setTitle('Xml');
-        parent::initialize();
+        $this->view->setTemplateBefore('private');
     }
 
-    public function indexAction()
-    {
-        $auth = $this->session->get('auth');
-        if (!$auth){
-            $this->flash->notice("Please login 5454");
-            return $this->forward('users/');   
-        }
+    public function indexAction(){
+        
     }
 
     public function uploadAction(){
@@ -24,19 +28,19 @@ class XmlController extends ControllerBase
             foreach ($this->request->getUploadedFiles() as $file){
                 $fileName = 'files/' . $file->getName();
                 $file->moveTo($fileName);
-                $xml = simplexml_load_file ($fileName); 
-                $userId = $this->session->get('auth')['idUsers'];
-                $user = Users::findFirst("idUsers = $userId");
-                $order = new Order();
-                $order->User = $userId;
-                $order->create();
+                $xml = simplexml_load_file($fileName);                        
+                $userId = $this->auth->getIdUser();
+                $user = $this->auth->getUser();
                 $this->xmlToDb($xml, $user);               
             }
             $this->flash->success("You've successfully uploaded XML");
         }else{
             $this->flash->error("You've failed to upload XML");
         } 
-        return $this->forward('xml/');
+
+        return $this->dispatcher->forward(array(
+            "action" => "index"
+        ));
     }
 
 
@@ -45,7 +49,7 @@ class XmlController extends ControllerBase
         $order->User = $user->idUsers;
         $order->create();
         foreach( $xml as $orderItem ) 
-        {                                      
+        {                         
             if ($orderItem->getName() == "Packing_List") {                       
                 $packingList = new PackingList();    
                 $packingList->Shipment_Number = (string) $orderItem->Shipment_Number;         
@@ -61,7 +65,7 @@ class XmlController extends ControllerBase
                 $palete = new Palete();                       
                 $palete->Order = $order->idOrder;
                 $palete->GS1_Code = (string)$orderItem->GS1_Code;
-                $palete->create();                       
+                $palete->create();       
                 foreach ($orderItem as $paleteItem) {
                     if ($paleteItem->getName() == "Artupal") {                                
                         $artupal = new Artupal();

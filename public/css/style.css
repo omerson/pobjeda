@@ -137,3 +137,17 @@ select {
 div.scaffold h2 {
 	margin: 10px;
 }
+
+ @media print
+    {
+        .btn, .navbar, footer, hr{ 
+            display: none; 
+        }
+        table{ 
+            border-left: none;
+            float: left;
+        }
+        td{            
+            width: 400px;
+        }
+    }

@@ -1,7 +1,10 @@
 <?php
 
+namespace Pobjeda\Models;
 
-class Profiles extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+
+class Profiles extends Model
 {
 
     /**
@@ -28,11 +31,11 @@ class Profiles extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany("idProfiles", "Permissions", "Profiles", array(
+        $this->hasMany("idProfiles", "Pobjeda\Models\Permissions", "Profiles", array(
             'alias' => 'permissions'
         ));
         
-        $this->hasMany("idProfiles", "Users", "Profiles", array(
+        $this->hasMany("idProfiles", "Pobjeda\Models\Users", "Profiles", array(
             'alias' => 'users',
             'foreignKey' => array(
                 'message' => 'Profile cannot be deleted because it\'s used on Users'

@@ -5,7 +5,7 @@
         {{ link_to("users/index", "&larr; Go Back") }}
     </li>
     <li class="pull-right">
-        {{ link_to("users/create", "<i class='icon-plus-sign'></i> Create Users", "class": "btn btn-primary") }}
+        {{ link_to("users/create", "Create users", "class": "btn btn-primary") }}
     </li>
 </ul>
 
@@ -15,12 +15,9 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Username</th>
             <th>Name</th>
-            <th>Surname</th>
             <th>Email</th>
             <th>Profile</th>
-            <th>Mobile</th>
             <th>Banned?</th>
             <th>Suspended?</th>
             <th>Confirmed?</th>
@@ -30,17 +27,14 @@
     <tbody>
         <tr>
             <td>{{ user.idUsers }}</td>
-            <td>{{ user.username }}</td>
             <td>{{ user.name }}</td>
-            <td>{{ user.surname }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.profile.name }}</td>
-            <td>{{ user.mobile }}</td>
             <td>{{ user.banned == 'Y' ? 'Yes' : 'No' }}</td>
             <td>{{ user.suspended == 'Y' ? 'Yes' : 'No' }}</td>
             <td>{{ user.active == 'Y' ? 'Yes' : 'No' }}</td>
             <td width="12%">{{ link_to("users/edit/" ~ user.idUsers, '<i class="icon-pencil"></i> Edit', "class": "btn") }}</td>
-            <td width="12%">{{ link_to("users/delete/" ~ user.idUsers, '<i class="icon-remove"></i> Delete', "class": "btn btn-danger") }}</td>
+            <td width="12%">{{ link_to("users/delete/" ~ user.idUsers, '<i class="icon-remove"></i> Delete', "class": "btn") }}</td>
         </tr>
     </tbody>
 {% if loop.last %}

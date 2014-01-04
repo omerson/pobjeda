@@ -1,7 +1,10 @@
 <?php
 
+namespace Pobjeda\Models;
 
-class RememberTokens extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+
+class RememberTokens extends Model
 {
 
     /**

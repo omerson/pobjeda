@@ -1,8 +1,17 @@
 <?php
 
+namespace Pobjeda\Models;
 
-class Artupal extends \Phalcon\Mvc\Model
-{
+use Phalcon\Mvc\Model;
+
+class Artupal extends Model
+{    
+
+    /**
+     *
+     * @var integer
+     */
+    public $Palete;
 
     /**
      *
@@ -50,22 +59,15 @@ class Artupal extends \Phalcon\Mvc\Model
      *
      * @var string
      */
-    public $Item_Type;
-     
-    /**
-     *
-     * @var integer
-     */
-    public $Palete;
+    public $Item_Type;    
+
      
     /**
      * Initialize method for model.
      */
     public function initialize()
     {
-		$this->hasMany("idArtupal", "Paketi", "Artupal");
-		$this->belongsTo("Palete", "Palete", "idPalete");
-
+		$this->hasMany("idArtupal", "Pobjeda\Models\Paketi", "Artupal");
+		$this->belongsTo("Palete", "Pobjeda\Models\Palete", "idPalete");
     }
-
 }

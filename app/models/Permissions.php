@@ -1,7 +1,10 @@
 <?php
 
+namespace Pobjeda\Models;
 
-class Permissions extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+
+class Permissions extends Model
 {
 
     /**
@@ -33,7 +36,7 @@ class Permissions extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-		$this->belongsTo("Profiles", "Profiles", "idProfiles");
+		$this->belongsTo("Profiles", "Pobjeda\Models\Profiles", "idProfiles");
 
     }
 

@@ -5,6 +5,9 @@
     <li class="previous pull-left">
         <?php echo Phalcon\Tag::linkTo(array('users', '&larr; Go Back')); ?>
     </li>
+    <li class="pull-right">
+        <?php echo Phalcon\Tag::submitButton(array('Save', 'class' => 'btn btn-success')); ?>
+    </li>
 </ul>
 
 <?php echo $this->getContent(); ?>
@@ -13,22 +16,18 @@
     <h2>Create a User</h2>
 
     <div class="clearfix">
+        <label for="name">Name</label>
+        <?php echo $form->render('name'); ?>
+    </div>
+
+    <div class="clearfix">
         <label for="email">E-Mail</label>
         <?php echo $form->render('email'); ?>
     </div>
 
     <div class="clearfix">
-        <label for="mobile">Cell Phone</label>
-        <?php echo $form->render('mobile'); ?>
-    </div>
-
-    <div class="clearfix">
-        <label for="Profiles">Profile</label>
+        <label for="profilesId">Profile</label>
         <?php echo $form->render('Profiles'); ?>
-    </div>
-
-    <div class="clearfix">
-           <?php echo Phalcon\Tag::submitButton(array('Save', 'class' => 'btn btn-success')); ?>
     </div>
 
 </div>

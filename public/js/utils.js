@@ -58,4 +58,12 @@ var SignUp = {
 $(document).ready(function () {
     $("#registerForm .alert").hide();
     $("div.profile .alert").hide();
+
+    $('#print').on('click', function(){
+        window.print();
+    });
+
+    $("#excel").on('click', function(){
+        //window.open('data:application/vnd.ms-excel,' + document.getElementById('dvData').innerHTML);
+    });
 });

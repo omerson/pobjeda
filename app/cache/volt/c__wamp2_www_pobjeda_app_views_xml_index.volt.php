@@ -3,10 +3,10 @@
 <div class="hero-unit">
     <h1>Welcome to POBJEDA</h1>
     <p>Here you can upload your order's XML file.</p>   
-     <?php echo Phalcon\Tag::form(array('xml/upload', 'class' => 'form-inline', 'enctype' => 'multipart/form-data')); ?>
+     <?php echo $this->tag->form(array('xml/upload', 'class' => 'form-inline', 'enctype' => 'multipart/form-data')); ?>
      	<span>
-        	<?php echo Phalcon\Tag::fileField(array('xml', 'class' => 'input-xxlarge', 'style' => 'font-size:15px; height:40px; margin-top: 3px;')); ?>
-        	<?php echo Phalcon\Tag::submitButton(array('Upload XML &raquo;', 'class' => 'btn btn-primary btn-large btn-success')); ?>
+        	<?php echo $this->tag->fileField(array('xml', 'class' => 'input-xxlarge', 'style' => 'font-size:15px; height:40px; margin-top: 3px;')); ?>
+        	<?php echo $this->tag->submitButton(array('Upload XML', 'class' => 'btn btn-primary btn-large btn-success')); ?>
     	</span>
 	</form>
 </div>

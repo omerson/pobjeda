@@ -1,5 +1,6 @@
 <?php
 
+namespace Pobjeda\Forms;
 
 use Phalcon\Forms\Form,
 	Phalcon\Forms\Element\Password,
@@ -8,6 +9,7 @@ use Phalcon\Forms\Form,
 	Phalcon\Validation\Validator\StringLength,
 	Phalcon\Validation\Validator\Confirmation;
 
+use Pobjeda\Models\Profiles;
 
 class ChangePasswordForm extends Form
 {

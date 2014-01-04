@@ -1,8 +1,17 @@
 <?php
 
+namespace Pobjeda\Models;
 
-class Mikro extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+
+class Mikro extends Model
 {
+
+    /**
+     *
+     * @var integer
+     */
+    public $Paketi;
 
     /**
      *
@@ -88,19 +97,15 @@ class Mikro extends \Phalcon\Mvc\Model
      */
     public $Number_Of_Items;
      
-    /**
-     *
-     * @var integer
-     */
-    public $Paketi;
+
      
     /**
      * Initialize method for model.
      */
     public function initialize()
     {
-		$this->hasMany("idMikro", "Jedinicno", "Mikro");
-		$this->belongsTo("Paketi", "Paketi", "idPaketi");
+		$this->hasMany("idMikro", "Pobjeda\Models\Jedinicno", "Mikro");
+		$this->belongsTo("Paketi", "Pobjeda\Models\Paketi", "idPaketi");
 
     }
 

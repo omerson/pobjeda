@@ -2,16 +2,16 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <?php echo Phalcon\Tag::getTitle(); ?>
-        <?php echo Phalcon\Tag::stylesheetLink('bootstrap/css/bootstrap.css'); ?>
-        <?php echo Phalcon\Tag::stylesheetLink('bootstrap/css/bootstrap-responsive.css'); ?>
-        <?php echo Phalcon\Tag::stylesheetLink('css/style.css'); ?>
+        <?php echo $this->tag->getTitle(); ?>
+        <?php echo $this->tag->stylesheetLink('bootstrap/css/bootstrap.css'); ?>
+        <?php echo $this->tag->stylesheetLink('bootstrap/css/bootstrap-responsive.css'); ?>
+        <?php echo $this->tag->stylesheetLink('css/style.css'); ?>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <?php echo $this->getContent(); ?>
-        <?php echo Phalcon\Tag::javascriptInclude('js/jquery.min.js'); ?>
-        <?php echo Phalcon\Tag::javascriptInclude('bootstrap/js/bootstrap.js'); ?>
-        <?php echo Phalcon\Tag::javascriptInclude('js/utils.js'); ?>
+        <?php echo $this->tag->javascriptInclude('js/jquery.min.js'); ?>
+        <?php echo $this->tag->javascriptInclude('bootstrap/js/bootstrap.js'); ?>
+        <?php echo $this->tag->javascriptInclude('js/utils.js'); ?>
     </body>
 </html>

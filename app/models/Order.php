@@ -1,7 +1,10 @@
 <?php
 
+namespace Pobjeda\Models;
 
-class Order extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+
+class Order extends Model
 {
 
     /**
@@ -34,10 +37,8 @@ class Order extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-		$this->hasMany("idOrder", "PackingList", "Order");
-		$this->hasMany("idOrder", "Palete", "Order");
-		$this->belongsTo("User", "Users", "idUsers");
-
+		$this->hasMany("idOrder", "Pobjeda\Models\PackingList", "Order");
+		$this->hasMany("idOrder", "Pobjeda\Models\Palete", "Order");
+		$this->belongsTo("User", "Pobjeda\Models\Users", "idUsers");
     }
-
 }

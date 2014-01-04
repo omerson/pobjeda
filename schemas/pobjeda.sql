@@ -23,7 +23,6 @@ CREATE TABLE `users` (
   `username` varchar(45) NOT NULL,
   `password` char(60) NOT NULL,
   `name` varchar(32) NOT NULL,
-  `surname` varchar(100) NOT NULL,
   `email` varchar(48) NOT NULL,  
   `mustChangePassword` char(1) DEFAULT NULL,
   `Profiles` int(10) unsigned NOT NULL,
@@ -35,7 +34,6 @@ CREATE TABLE `users` (
   KEY `fk_Users_Profiles` (`Profiles`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-INSERT INTO `users` VALUES (1,'admin','admin', 'Name', 'Surname', 'admin@pobjeda.com', 'N', 1, 'N',  '061 439 929', 'N', 'Y');
 
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
@@ -62,6 +60,7 @@ CREATE TABLE `packing_list` (
   KEY `fk_Packing_List_Order` (`Order`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+
 DROP TABLE IF EXISTS `palete`;
 CREATE TABLE `palete` (
   `idPalete` int(11) NOT NULL AUTO_INCREMENT,
@@ -71,6 +70,7 @@ CREATE TABLE `palete` (
   PRIMARY KEY (`idPalete`),
   KEY `fk_Palete_Order` (`Order`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 
 DROP TABLE IF EXISTS `artupal`;
 CREATE TABLE `artupal` (
@@ -87,26 +87,28 @@ CREATE TABLE `artupal` (
   KEY `fk_Artupal_Palete` (`Palete`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-DROP TABLE IF EXISTS `jedinicno`;
-CREATE TABLE `jedinicno` (
-  `idJedinicno` int(11) NOT NULL AUTO_INCREMENT,
-  `Item_Number` mediumtext DEFAULT NULL,
-  `Item_Type` varchar(45) DEFAULT NULL,
+
+DROP TABLE IF EXISTS `paketi`;
+CREATE TABLE `paketi` (
+  `idPaketi` int(11) NOT NULL AUTO_INCREMENT,
+  `Item_Number` mediumtext NOT NULL,
+  `Item_Type` varchar(45) NULL,
+  `Unique_Number` mediumtext NOT NULL,
+  `Product_Code` varchar(45) NOT NULL,
+  `Description` mediumtext NOT NULL,
+  `Production_Date` datetime NOT NULL,
+  `Quantity` decimal(2,0) NOT NULL,
+  `Unit_Of_Measure` varchar(45) NOT NULL,
+  `Count_Of_Units` decimal(2,0) NOT NULL,
+  `Number_Of_Items` int(11) NOT NULL,
   `GS1_Code` mediumtext DEFAULT NULL,
   `Country_Code` varchar(45) DEFAULT NULL,
   `Site_Code` varchar(45) DEFAULT NULL,
-  `Unique_Number` mediumtext DEFAULT NULL,
-  `Product_Code` varchar(45) DEFAULT NULL,
-  `Description` mediumtext DEFAULT NULL,
-  `Production_Date` datetime DEFAULT NULL,
-  `Quantity` varchar(45) DEFAULT NULL,
-  `Unit_Of_Measure` varchar(45) DEFAULT NULL,
-  `Count_Of_Units` int(11) DEFAULT NULL,
-  `Number_Of_Items` int(11) DEFAULT NULL,
-  `Mikro` int(11) NOT NULL,
-  PRIMARY KEY (`idJedinicno`),
-  KEY `fk_Jedinicno_Mikro` (`Mikro`)
+  `Artupal` int(11) NOT NULL,
+  PRIMARY KEY (`idPaketi`),
+  KEY `fk_Paketi_Artupal` (`Artupal`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 
 DROP TABLE IF EXISTS `mikro`;
 CREATE TABLE `mikro` (
@@ -129,26 +131,31 @@ CREATE TABLE `mikro` (
   KEY `fk_Mikro_Paketi` (`Paketi`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-DROP TABLE IF EXISTS `paketi`;
-CREATE TABLE `paketi` (
-  `idPaketi` int(11) NOT NULL AUTO_INCREMENT,
-  `Item_Number` mediumtext NOT NULL,
-  `Item_Type` varchar(45) NULL,
-  `Unique_Number` mediumtext NOT NULL,
-  `Product_Code` varchar(45) NOT NULL,
-  `Description` mediumtext NOT NULL,
-  `Production_Date` datetime NOT NULL,
-  `Quantity` decimal(2,0) NOT NULL,
-  `Unit_Of_Measure` varchar(45) NOT NULL,
-  `Count_Of_Units` decimal(2,0) NOT NULL,
-  `Number_Of_Items` int(11) NOT NULL,
+
+DROP TABLE IF EXISTS `jedinicno`;
+CREATE TABLE `jedinicno` (
+  `idJedinicno` int(11) NOT NULL AUTO_INCREMENT,
+  `Item_Number` mediumtext DEFAULT NULL,
+  `Item_Type` varchar(45) DEFAULT NULL,
   `GS1_Code` mediumtext DEFAULT NULL,
   `Country_Code` varchar(45) DEFAULT NULL,
   `Site_Code` varchar(45) DEFAULT NULL,
-  `Artupal` int(11) NOT NULL,
-  PRIMARY KEY (`idPaketi`),
-  KEY `fk_Paketi_Artupal` (`Artupal`)
+  `Unique_Number` mediumtext DEFAULT NULL,
+  `Product_Code` varchar(45) DEFAULT NULL,
+  `Description` mediumtext DEFAULT NULL,
+  `Production_Date` datetime DEFAULT NULL,
+  `Quantity` varchar(45) DEFAULT NULL,
+  `Unit_Of_Measure` varchar(45) DEFAULT NULL,
+  `Count_Of_Units` int(11) DEFAULT NULL,
+  `Number_Of_Items` int(11) DEFAULT NULL,
+  `Mikro` int(11) NOT NULL,
+  PRIMARY KEY (`idJedinicno`),
+  KEY `fk_Jedinicno_Mikro` (`Mikro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+
+
 
 
 DROP TABLE IF EXISTS `email_confirmations`;

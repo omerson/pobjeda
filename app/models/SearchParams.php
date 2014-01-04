@@ -1,7 +1,10 @@
 <?php
 
+namespace Pobjeda\Models;
 
-class SearchParams extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+
+class SearchParams extends Model
 {
 
     /**
@@ -33,7 +36,7 @@ class SearchParams extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-		$this->belongsTo("Search", "SuccessSearch", "idSearch", array(
+		$this->belongsTo("Search", "Pobjeda\Models\SuccessSearch", "idSearch", array(
             'alias' => 'search'
         ));
     }

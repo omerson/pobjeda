@@ -1,7 +1,10 @@
 <?php
 
+namespace Pobjeda\Models;
 
-class SuccessLogouts extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+
+class SuccessLogouts extends Model
 {
 
     /**
@@ -46,7 +49,7 @@ class SuccessLogouts extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-		$this->belongsTo("User", "Users", "idUsers", array(
+		$this->belongsTo("User", "Pobjeda\Models\Users", "idUsers", array(
             'alias' => 'user'
         ));
 

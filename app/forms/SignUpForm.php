@@ -1,5 +1,6 @@
 <?php
 
+namespace Pobjeda\Forms;
 
 use Phalcon\Forms\Form,
 	Phalcon\Forms\Element\Text,
@@ -7,7 +8,6 @@ use Phalcon\Forms\Form,
 	Phalcon\Forms\Element\Password,
 	Phalcon\Forms\Element\Submit,
 	Phalcon\Forms\Element\Check,
-	Phalcon\Forms\Element\Select,
 	Phalcon\Validation\Validator\PresenceOf,
 	Phalcon\Validation\Validator\Email,
 	Phalcon\Validation\Validator\Identical,
@@ -19,19 +19,6 @@ class SignUpForm extends Form
 
 	public function initialize($entity=null, $options=null)
 	{
-
-		$username = new Text('username');
-
-		$username->setLabel('Username');
-
-		$username->addValidators(array(
-			new PresenceOf(array(
-				'message' => 'The username is required'
-			))
-		));
-
-		$this->add($username);
-
 
 		$name = new Text('name');
 
@@ -45,17 +32,33 @@ class SignUpForm extends Form
 
 		$this->add($name);
 
-		$surname = new Text('surname');
+		// Username
+		$username = new Text('username');
 
-		$surname->setLabel('Surname');
+		$username->setLabel('Username');
 
-		$surname->addValidators(array(
+		$name->addValidators(array(
 			new PresenceOf(array(
-				'message' => 'The surname is required'
+				'message' => 'The username is required'
 			))
 		));
 
-		$this->add($surname);
+		$this->add($username);
+
+
+		// Mobile
+		$mobile = new Text('mobile');
+
+		$mobile->setLabel('Mobile');
+
+		$name->addValidators(array(
+			new PresenceOf(array(
+				'message' => 'The mobile is required'
+			))
+		));
+
+		$this->add($mobile);
+
 
 		//Email
 		$email = new Text('email');
@@ -134,33 +137,6 @@ class SignUpForm extends Form
 		);
 
 		$this->add($csrf);
-
-		$this->add(new Select('Profiles', Profiles::find('active = "Y"'), array(
-			'using' => array('idProfiles', 'name'),
-			'useEmpty' => true,
-			'emptyText' => '...',
-			'emptyValue' => ''
-		)));
-
-
-
-		$this->add(new Text('mobile'));
-
-		
-		$this->add(new Select('banned', array(
-			'Y' => 'Yes',
-			'N' => 'No'
-		)));
-
-		$this->add(new Select('suspended', array(
-			'Y' => 'Yes',
-			'N' => 'No'
-		)));
-
-		$this->add(new Select('active', array(
-			'Y' => 'Yes',
-			'N' => 'No'
-		)));
 
 		//Sign Up
 		$this->add(new Submit('Sign Up', array(

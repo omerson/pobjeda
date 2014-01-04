@@ -1,5 +1,6 @@
 <?php
 
+namespace Pobjeda\Forms;
 
 use Phalcon\Forms\Form,
 	Phalcon\Forms\Element\Text,
@@ -11,6 +12,7 @@ use Phalcon\Forms\Form,
 	Phalcon\Validation\Validator\PresenceOf,
 	Phalcon\Validation\Validator\Email;
 
+use Pobjeda\Models\Profiles;
 
 class ProfilesForm extends Form
 {
@@ -34,5 +36,7 @@ class ProfilesForm extends Form
 			'Y' => 'Yes',
 			'N' => 'No'
 		)));
+
 	}
+
 }

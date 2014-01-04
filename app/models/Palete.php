@@ -1,8 +1,17 @@
 <?php
 
+namespace Pobjeda\Models;
 
-class Palete extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+
+class Palete extends Model
 {
+
+    /**
+     *
+     * @var integer
+     */
+    public $Order;
 
     /**
      *
@@ -21,20 +30,15 @@ class Palete extends \Phalcon\Mvc\Model
      * @var string
      */
     public $Item_Type;
-     
-    /**
-     *
-     * @var integer
-     */
-    public $Order;
+    
      
     /**
      * Initialize method for model.
      */
     public function initialize()
     {
-		$this->hasMany("idPalete", "Artupal", "Palete");
-		$this->belongsTo("Order", "Order", "idOrder");
+		$this->hasMany("idPalete", "Pobjeda\Models\Artupal", "Palete");
+		$this->belongsTo("Order", "Pobjeda\Models\Order", "idOrder");
 
     }
 

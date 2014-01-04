@@ -5,7 +5,7 @@
         <?php echo Phalcon\Tag::linkTo(array('users/index', '&larr; Go Back')); ?>
     </li>
     <li class="pull-right">
-        <?php echo Phalcon\Tag::linkTo(array('users/create', '<i class=\'icon-plus-sign\'></i> Create Users', 'class' => 'btn btn-primary')); ?>
+        <?php echo Phalcon\Tag::linkTo(array('users/create', 'Create users', 'class' => 'btn btn-primary')); ?>
     </li>
 </ul>
 
@@ -15,12 +15,9 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Username</th>
             <th>Name</th>
-            <th>Surname</th>
             <th>Email</th>
             <th>Profile</th>
-            <th>Mobile</th>
             <th>Banned?</th>
             <th>Suspended?</th>
             <th>Confirmed?</th>
@@ -30,17 +27,14 @@
     <tbody>
         <tr>
             <td><?php echo $user->idUsers; ?></td>
-            <td><?php echo $user->username; ?></td>
             <td><?php echo $user->name; ?></td>
-            <td><?php echo $user->surname; ?></td>
             <td><?php echo $user->email; ?></td>
             <td><?php echo $user->profile->name; ?></td>
-            <td><?php echo $user->mobile; ?></td>
             <td><?php echo ($user->banned == 'Y' ? 'Yes' : 'No'); ?></td>
             <td><?php echo ($user->suspended == 'Y' ? 'Yes' : 'No'); ?></td>
             <td><?php echo ($user->active == 'Y' ? 'Yes' : 'No'); ?></td>
             <td width="12%"><?php echo Phalcon\Tag::linkTo(array('users/edit/' . $user->idUsers, '<i class="icon-pencil"></i> Edit', 'class' => 'btn')); ?></td>
-            <td width="12%"><?php echo Phalcon\Tag::linkTo(array('users/delete/' . $user->idUsers, '<i class="icon-remove"></i> Delete', 'class' => 'btn btn-danger')); ?></td>
+            <td width="12%"><?php echo Phalcon\Tag::linkTo(array('users/delete/' . $user->idUsers, '<i class="icon-remove"></i> Delete', 'class' => 'btn')); ?></td>
         </tr>
     </tbody>
 <?php if ($v8079688021loop->last) { ?>

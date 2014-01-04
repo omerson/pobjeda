@@ -1,27 +1,45 @@
 
 {{ content() }}
 <div class="hero-unit">
-    <h1>Welcome to POBJEDA</h1>
+    <h1>Postavite narudžbu</h1>
     <p>Here you can upload your order's XML file.</p>   
      {{ form('xml/upload', 'class': 'form-inline', 'enctype': 'multipart/form-data') }}
      	<span>
         	{{ file_field('xml', 'class': 'input-xxlarge', 'style' : 'font-size:15px; height:40px; margin-top: 3px;') }}
-        	{{ submit_button('Upload XML &raquo;', 'class': 'btn btn-primary btn-large btn-success') }}
+        	{{ submit_button('Upload XML', 'class': 'btn btn-primary btn-large btn-success') }}
     	</span>
 	</form>
 </div>
 
+
 <div class="row">
-    <div class="span4">
-        <h2>Some info</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+    <div class="span3">
+      <div class="well">
+        <h3>O Pobjedi-Rudet</h3>
+        <p>Pobjeda-Rudet d.d. Goražde je kompanija sa poznatom industrijskom tradicijom u proizvodnji inicirajucih sredstava za razne komercijalne svrhe, koja ima velike tehnološke i proizvodne mogucnosti. Kompanija je sposobna da vodi projekte prenosa tehnologije po sistemu kljuc u ruke, samostalno ili u saradnji sa drugim renomiranim proizvodacima.
+Kao poznati proizvodac inicirajucih sredstava koji se koriste u razne komercijalne svrhe, ova komapnija sa svojim proizvodima prisutna je na tržištima Australije, Malezije, SAD i širom Evrope.</p>
+      </div>
     </div>
-    <div class="span4">
-        <h2>Some notification</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+
+    <div class="span3">
+      <h2>O web aplikaciji</h2>
+        <p>Osnovne osobine:
+    <ul><li>Aplikacija pruža autorizovanom korisniku upload xml fajla, koji se potom unosi u odgovarajucu bazu podataka.</li>
+    <li>Posjeduje administrativni i javni dio. U administrativnom dijelu dodaju se korisnici, importuje xml fajl u bazu, i pristupa pregledima koji su tajni.</li>
+    <li>Nudi svim korisnicima detaljnu pretragu proizvoda, koja je prilagodena svim korisnicima, te export rezultata u pdf ili xsl format.</li></ul></p>
+     </div>
+    <div class="span3">
+    <h2>Kako radi?</h2>
+    <p>Aplikacija ima sljedece funkcionalnosti:
+<ul><li>Upload XML faja</li><li>Pretraga baze podataka</li><li>Kreiranje novih korisnika</li><li> Mogucnost pracenja historije pretraga, u okviru administrativnog dijela</li><li>Korisnik može biti administrator ili gost</li><li>Export podataka u pdf ili xls formate.</li></ul></p>
     </div>
-    <div class="span4">
-        <h2>Some advice</h2>
-        <p>Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. </p>
-    </div>
-</div>
+    
+  </div>
+
+
+
+
+
+
+
+
